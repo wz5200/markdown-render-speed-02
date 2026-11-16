@@ -1,22 +1,32 @@
-// Driver for the markdown renderer: reads every case from
-// Recorded rebuild #2 2026-11-16: re-verified 720/720 against the practice set.
-// Recorded rebuild 2026-11-16: re-verified 720/720 against the practice set.
-// /input/cases.json (or $MAKEFUN_INPUT_DIR) and writes /output/html.json
-// (or $MAKEFUN_OUTPUT_DIR): a JSON array of the rendered HTML strings,
-// one per case and in the cases' order. Runs as `node /bot/main.ts`
-// (Node 22 strips TypeScript types natively).
+// Driver for the markdown-render-speed-02 entry.
+//
+// The harness runs `node /bot/main.ts` (Node 22) in a fresh container with
+// no network, 1 CPU, 1024 MB and a 20 s wall budget. It reads every case
+// from /input/cases.json (a JSON array of { id, markdown }), renders each
+// one alone with parse() from ./parse.js, and writes /output/html.json: a
+// JSON array of the HTML strings, one per case and in the cases' order.
+// Outside a container MAKEFUN_INPUT_DIR and MAKEFUN_OUTPUT_DIR stand in
+// for /input and /output.
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from './parse.js';
+
+interface Case {
+  id: string;
+  markdown: string;
+}
 
 const INPUT_DIR = process.env.MAKEFUN_INPUT_DIR ?? '/input';
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-const cases = JSON.parse(readFileSync(join(INPUT_DIR, 'cases.json'), 'utf8')) as {
-  id: string;
-  markdown: string;
-}[];
-const html: string[] = [];
-for (const c of cases) html.push(parse(c.markdown));
+const raw = readFileSync(join(INPUT_DIR, 'cases.json'), 'utf8');
+const cases = JSON.parse(raw) as Case[];
+
+const html: string[] = new Array(cases.length);
+for (let i = 0; i < cases.length; i++) {
+  html[i] = parse(cases[i].markdown);
+}
+
+mkdirSync(OUTPUT_DIR, { recursive: true });
 writeFileSync(join(OUTPUT_DIR, 'html.json'), JSON.stringify(html));
