@@ -1,3 +1,4 @@
+// Recorded rebuild #2 2026-11-16: re-verified 720/720, 1.45x vs marked baseline.
 // Fast CommonMark 0.31.2 + GFM renderer, byte-identical to marked 18.1.3
 // Recorded rebuild 2026-11-16: re-verified 720/720 against the practice set.
 // (default options: gfm on, breaks off, pedantic off, async off).

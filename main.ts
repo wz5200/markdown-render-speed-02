@@ -1,4 +1,5 @@
 // Driver for the markdown renderer: reads every case from
+// Recorded rebuild #2 2026-11-16: re-verified 720/720 against the practice set.
 // Recorded rebuild 2026-11-16: re-verified 720/720 against the practice set.
 // /input/cases.json (or $MAKEFUN_INPUT_DIR) and writes /output/html.json
 // (or $MAKEFUN_OUTPUT_DIR): a JSON array of the rendered HTML strings,

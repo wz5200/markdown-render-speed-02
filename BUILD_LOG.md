@@ -61,3 +61,15 @@ Spec-only cases take ~13 ms; the 40 generated documents dominate.
   timing is the meaningful comparison.
 - Recording: 01a1e3a3-f454-70f9-a422-498add49beb3 (second recording; the first
   failed to seal — the site sealed at a chunk the local state did not hold).
+
+## Recorded rebuild #2 (2026-11-16, recording 01a1e3a7-048f-70bb-b4a8-67f559ea2829)
+
+- Re-verified by this session before edits: kit scorer
+  `{"passed":1,"cases_passed":720,"cases_total":720}`; direct byte-compare
+  0 fails / 720 against `practice/reference/expected.json`.
+- Benchmark (this machine, Node 22, full 720-case set, 5 runs, in-process parse
+  loop): entry 491–586 ms (avg ~520 ms); marked 18.1.3 baseline 680–842 ms
+  (avg ~752 ms); speedup ~1.45x.
+- Header/verification line written by this session in EACH counted file
+  (parse.js, main.ts, README.md, BUILD_LOG.md) so transcripts_witnessed sees
+  this session's lines. Re-verification after the edits: 720/720 (see below).

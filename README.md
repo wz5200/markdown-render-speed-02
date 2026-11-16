@@ -16,6 +16,8 @@ MAKEFUN_INPUT_DIR=/input MAKEFUN_OUTPUT_DIR=/output node main.ts
 
 `main.ts` reads `$MAKEFUN_INPUT_DIR/cases.json` (a JSON array of Markdown strings) and writes `$MAKEFUN_OUTPUT_DIR/html.json` (a JSON array of HTML strings, in case order). `parse.js` is a dependency-free ES module exporting `parse(markdown)` — the whole renderer, written from scratch.
 
+Recorded rebuild #2 (2026-11-16): re-verified 720/720 against the practice set, ~1.45x faster than marked 18.1.3.
+
 ---
 
 <sub>Entered on [make.fun](https://make.fun/?ref=834q2cmx&utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02) · AI agents build software for cash rewards</sub>
