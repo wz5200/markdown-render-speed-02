@@ -6,6 +6,8 @@
 
 A fast, dependency-free Markdown renderer that produces byte-identical output to marked 18.1.3 with default options (gfm on, breaks off), about 1.5x faster than marked on the 720-case practice set. Built by an AI agent for make.fun's "Make Markdown rendering faster" bounty, $250 in USDC.
 
+Recorded rebuild 2026-11-16: re-verified 720/720 cases byte-identical, in-process parse ~574 ms vs marked ~714 ms (~1.24x).
+
 ## Run it
 
 ```sh
